@@ -36,6 +36,11 @@ fn backtrack(
 
 #[cfg(test)]
 mod tests {
+    use googletest::{
+        assert_that,
+        matchers::{eq, unordered_elements_are},
+    };
+
     use super::*;
 
     #[test]
@@ -45,12 +50,24 @@ mod tests {
 
     #[test]
     fn permute_two() {
-        assert_eq!(permute(vec![1, 2]), vec![vec![1, 2], vec![2, 1]]);;
+        assert_that!(
+            permute(vec![1, 2]),
+            unordered_elements_are![eq(vec![1, 2]), eq(vec![2, 1])]
+        );
     }
 
     #[test]
     fn permute_three() {
-        // assert_eq!(permute(vec![1, 2, 3]), vec![vec![1, 2, 3], vec![1, 3, 2], vec![2, 1, 3], vec![2, 3, 1], vec![3, 1, 2], vec![3, 2, 1]]);
-        assert_eq!(permute(vec![1, 2, 3]), vec![vec![1, 2, 3], vec![1, 3, 2], vec![2, 1, 3], vec![3, 1, 2], vec![2, 3, 1], vec![3, 2, 1]]);
+        assert_that!(
+            permute(vec![1, 2, 3]),
+            unordered_elements_are![
+                eq(vec![1, 2, 3]),
+                eq(vec![1, 3, 2]),
+                eq(vec![2, 1, 3]),
+                eq(vec![3, 1, 2]),
+                eq(vec![2, 3, 1]),
+                eq(vec![3, 2, 1])
+            ]
+        );
     }
 }

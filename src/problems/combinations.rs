@@ -92,6 +92,11 @@ fn backtrack(n: i32, k: i32, i: i32, cur: &mut Vec<i32>, res: &mut Vec<Vec<i32>>
 
 #[cfg(test)]
 mod tests {
+    use googletest::{
+        assert_that,
+        matchers::{eq, unordered_elements_are},
+    };
+
     use super::*;
 
     #[test]
@@ -106,35 +111,40 @@ mod tests {
 
     #[test]
     fn test_three_two() {
-        assert_eq!(combine3(3, 2), vec![vec![1, 2], vec![1, 3], vec![2, 3]]);
+        assert_that!(
+            combine3(3, 2),
+            unordered_elements_are![eq([1, 2]), eq([1, 3]), eq([2, 3])]
+        );
     }
 
     #[test]
     fn test_four_one() {
-        assert_eq!(combine3(4, 1), vec![vec![1], vec![2], vec![3], vec![4]]);
+        assert_that!(
+            combine3(4, 1),
+            unordered_elements_are![eq([1]), eq([2]), eq([3]), eq([4]),]
+        );
     }
 
     #[test]
     fn test_four_two() {
-        //   assert_eq!(combine3(4, 2), vec![vec![1, 2], vec![1, 3], vec![2, 3], vec![1, 4], vec![2, 4], vec![3, 4]]);
-        assert_eq!(
+        assert_that!(
             combine3(4, 2),
-            vec![
-                vec![1, 2],
-                vec![1, 3],
-                vec![1, 4],
-                vec![2, 3],
-                vec![2, 4],
-                vec![3, 4]
+            unordered_elements_are![
+                eq([1, 2]),
+                eq([1, 3]),
+                eq([1, 4]),
+                eq([2, 3]),
+                eq([2, 4]),
+                eq([3, 4])
             ]
         );
     }
 
     #[test]
     fn test_four_three() {
-        assert_eq!(
+        assert_that!(
             combine3(4, 3),
-            vec![vec![1, 2, 3], vec![1, 2, 4], vec![1, 3, 4], vec![2, 3, 4]]
+            unordered_elements_are![eq([1, 2, 3]), eq([1, 2, 4]), eq([1, 3, 4]), eq([2, 3, 4])]
         );
     }
 
