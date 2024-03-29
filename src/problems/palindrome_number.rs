@@ -16,7 +16,7 @@ pub fn is_palindrome(x: i32) -> bool {
 
     // check mismatch in the first and last digits
     while deq.len() >= 2 {
-        if deq.pop_front().unwrap()!= deq.pop_back().unwrap() {
+        if deq.pop_front().unwrap() != deq.pop_back().unwrap() {
             return false;
         }
     }

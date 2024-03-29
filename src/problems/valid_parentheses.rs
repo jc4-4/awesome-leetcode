@@ -13,7 +13,7 @@ pub fn is_valid(s: String) -> bool {
                 // if d.is_none() || !is_pair(d.unwrap(), c) {
                 //     return false;
                 // }
-            },
+            }
             _ => panic!("Unexpected char: {}", c),
         }
     }

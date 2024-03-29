@@ -7,7 +7,13 @@ pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
     res
 }
 
-fn backtrack(index: usize, nums: &Vec<i32>, used: &mut Vec<bool>, cur: &mut Vec<i32>, res: &mut Vec<Vec<i32>>) {
+fn backtrack(
+    index: usize,
+    nums: &Vec<i32>,
+    used: &mut Vec<bool>,
+    cur: &mut Vec<i32>,
+    res: &mut Vec<Vec<i32>>,
+) {
     // solution?
     if index == nums.len() {
         res.push(cur.clone());

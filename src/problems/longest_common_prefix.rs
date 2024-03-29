@@ -13,7 +13,7 @@ pub fn longest_common_prefix(strs: Vec<String>) -> String {
         let c = strs[0].chars().nth(i);
         for j in 1..strs.len() {
             match strs[j].chars().nth(i) {
-                Some(x) if Some(x) == c => {},
+                Some(x) if Some(x) == c => {}
                 _ => return strs[0][..i].to_string(),
             }
         }

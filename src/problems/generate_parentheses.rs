@@ -8,7 +8,12 @@ pub fn generate_parenthesis(n: i32) -> Vec<String> {
     res
 }
 
-fn backtrack(length: i32, current: &mut String, visited: &mut HashSet<String>, result: &mut Vec<String>) {
+fn backtrack(
+    length: i32,
+    current: &mut String,
+    visited: &mut HashSet<String>,
+    result: &mut Vec<String>,
+) {
     // found a solution, save it!
     if current.len() as i32 == 2 * length {
         result.push(current.clone());

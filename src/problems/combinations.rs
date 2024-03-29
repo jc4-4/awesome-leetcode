@@ -79,7 +79,7 @@ fn backtrack(n: i32, k: i32, i: i32, cur: &mut Vec<i32>, res: &mut Vec<Vec<i32>>
     // found a solution
     if cur.len() == k as usize {
         res.push(cur.clone());
-        return
+        return;
     }
 
     // explore using [i..n] as next candidate

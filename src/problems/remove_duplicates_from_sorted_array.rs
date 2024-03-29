@@ -51,7 +51,10 @@ mod tests {
 
     #[test]
     fn test_not_consecutive() {
-        assert_eq!(remove_duplicates(&mut [1, 1, 21, 21, 31, 41, 41, 52, 52, 52, 52]), 5);
+        assert_eq!(
+            remove_duplicates(&mut [1, 1, 21, 21, 31, 41, 41, 52, 52, 52, 52]),
+            5
+        );
     }
 
     #[test]
