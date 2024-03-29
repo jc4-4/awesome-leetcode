@@ -21,7 +21,7 @@ pub fn is_palindrome(x: i32) -> bool {
         }
     }
 
-    return true;
+    true
 }
 
 #[cfg(test)]
@@ -30,16 +30,16 @@ mod tests {
 
     #[test]
     fn test_case1() {
-        assert_eq!(is_palindrome(121), true);
+        assert!(is_palindrome(121));
     }
 
     #[test]
     fn test_case2() {
-        assert_eq!(is_palindrome(-121), false);
+        assert!(!is_palindrome(-121));
     }
 
     #[test]
     fn test_case3() {
-        assert_eq!(is_palindrome(10), false);
+        assert!(!is_palindrome(10));
     }
 }

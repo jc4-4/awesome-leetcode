@@ -18,14 +18,11 @@ pub fn is_valid(s: String) -> bool {
         }
     }
 
-    return stack.is_empty();
+    stack.is_empty()
 }
 
 fn is_pair(c: char, d: char) -> bool {
-    match (c, d) {
-        ('(', ')') | ('[', ']') | ('{', '}') => true,
-        _ => false,
-    }
+    matches!((c, d), ('(', ')') | ('[', ']') | ('{', '}'))
 }
 
 #[cfg(test)]
@@ -34,26 +31,26 @@ mod tests {
 
     #[test]
     fn test_case1() {
-        assert_eq!(is_valid("()".to_string()), true);
+        assert!(is_valid("()".to_string()));
     }
 
     #[test]
     fn test_case2() {
-        assert_eq!(is_valid("()[]{}".to_string()), true);
+        assert!(is_valid("()[]{}".to_string()));
     }
 
     #[test]
     fn test_case3() {
-        assert_eq!(is_valid("(]".to_string()), false);
+        assert!(!is_valid("(]".to_string()));
     }
 
     #[test]
     fn test_nested() {
-        assert_eq!(is_valid("((()))[]{}".to_string()), true);
+        assert!(is_valid("((()))[]{}".to_string()));
     }
 
     #[test]
     fn test_empty() {
-        assert_eq!(is_valid("(".to_string()), false);
+        assert!(!is_valid("(".to_string()));
     }
 }

@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/remove-duplicates-from-sorted-array
-pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
+pub fn remove_duplicates(nums: &mut [i32]) -> i32 {
     if nums.is_empty() {
         return 0;
     }
@@ -26,36 +26,36 @@ mod tests {
 
     #[test]
     fn test_distinct() {
-        assert_eq!(remove_duplicates(&mut vec![1, 2, 3]), 3);
+        assert_eq!(remove_duplicates(&mut [1, 2, 3]), 3);
     }
 
     #[test]
     fn test_dup() {
-        assert_eq!(remove_duplicates(&mut vec![1, 1, 2]), 2);
+        assert_eq!(remove_duplicates(&mut [1, 1, 2]), 2);
     }
 
     #[test]
     fn test_all_dup() {
-        assert_eq!(remove_duplicates(&mut vec![1, 1, 1]), 1);
+        assert_eq!(remove_duplicates(&mut [1, 1, 1]), 1);
     }
 
     #[test]
     fn test_all_but_one() {
-        assert_eq!(remove_duplicates(&mut vec![1, 1, 1, 2]), 2);
+        assert_eq!(remove_duplicates(&mut [1, 1, 1, 2]), 2);
     }
 
     #[test]
     fn test_dup_in_between() {
-        assert_eq!(remove_duplicates(&mut vec![1, 1, 2, 2, 3, 4, 4, 5, 5, 5, 5]), 5);
+        assert_eq!(remove_duplicates(&mut [1, 1, 2, 2, 3, 4, 4, 5, 5, 5, 5]), 5);
     }
 
     #[test]
     fn test_not_consecutive() {
-        assert_eq!(remove_duplicates(&mut vec![1, 1, 21, 21, 31, 41, 41, 52, 52, 52, 52]), 5);
+        assert_eq!(remove_duplicates(&mut [1, 1, 21, 21, 31, 41, 41, 52, 52, 52, 52]), 5);
     }
 
     #[test]
     fn test_empty() {
-        assert_eq!(remove_duplicates(&mut vec![]), 0);
+        assert_eq!(remove_duplicates(&mut []), 0);
     }
 }

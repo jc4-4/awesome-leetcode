@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 mod problems {
     automod::dir!("src/problems");
 }

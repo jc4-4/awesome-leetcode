@@ -8,7 +8,7 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     for i in 0..nums.len() {
         let comp = target - nums[i];
         match map.get(&comp) {
-            Some(&y) => return vec![y as i32, i as i32],
+            Some(&y) => return vec![y, i as i32],
             None => map.insert(nums[i], i as i32),
         };
     }
