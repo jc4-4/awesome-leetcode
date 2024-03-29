@@ -4,7 +4,8 @@ use std::collections::HashSet;
 
 pub fn generate_parenthesis(n: i32) -> Vec<String> {
     let mut res = vec![];
-    backtrack(n, &mut String::new(), &mut HashSet::new(), &mut res);
+    // backtrack(n, &mut String::new(), &mut HashSet::new(), &mut res);
+    backtrack2(n, n, &mut String::with_capacity(2 * n as usize), &mut res);
     res
 }
 
@@ -30,6 +31,30 @@ fn backtrack(
             visited.insert(current.clone());
         }
         current.drain(i..i + 2);
+    }
+}
+
+fn backtrack2(num_open: i32, num_closed: i32, current: &mut String, result: &mut Vec<String>) {
+    // a well-formed parentheses if every open ( has a closed ).
+    if num_open == 0 && num_closed == 0 {
+        result.push(current.clone());
+        return;
+    }
+
+    // instead of inserting () in the middle, always place at the end.
+    // try to place an open (
+    if num_open > 0 {
+        current.push('(');
+        backtrack2(num_open - 1, num_closed, current, result);
+        current.pop();
+    }
+
+    // to make sure this is well-formed, only place a closing ) if there is a
+    // matching open (. This avoids cases like )(.
+    if num_closed > num_open {
+        current.push(')');
+        backtrack2(num_open, num_closed - 1, current, result);
+        current.pop();
     }
 }
 
