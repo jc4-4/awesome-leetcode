@@ -67,35 +67,58 @@ fn combine2(n: i32, k: i32) -> Vec<Vec<i32>> {
     result
 }
 
+// backtracking solution below
+fn combine3(n: i32, k: i32) -> Vec<Vec<i32>> {
+    let mut cur = vec![];
+    let mut res = vec![];
+    backtrack(n, k, 1, &mut cur, &mut res);
+    res
+}
+
+fn backtrack(n: i32, k: i32, i: i32, cur: &mut Vec<i32>, res: &mut Vec<Vec<i32>>) {
+    // found a solution
+    if cur.len() == k as usize {
+        res.push(cur.clone());
+        return
+    }
+
+    // explore using [i..n] as next candidate
+    for j in i..=n {
+        cur.push(j);
+        backtrack(n, k, j + 1, cur, res);
+        cur.pop();
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_three_three() {
-        assert_eq!(combine2(3, 3), vec![vec![1, 2, 3]]);
+        assert_eq!(combine3(3, 3), vec![vec![1, 2, 3]]);
     }
 
     #[test]
     fn test_two_zero() {
-        assert_eq!(combine2(2, 0), vec![vec![]]);
+        assert_eq!(combine3(2, 0), vec![vec![]]);
     }
 
     #[test]
     fn test_three_two() {
-        assert_eq!(combine2(3, 2), vec![vec![1, 2], vec![1, 3], vec![2, 3]]);
+        assert_eq!(combine3(3, 2), vec![vec![1, 2], vec![1, 3], vec![2, 3]]);
     }
 
     #[test]
     fn test_four_one() {
-        assert_eq!(combine2(4, 1), vec![vec![1], vec![2], vec![3], vec![4]]);
+        assert_eq!(combine3(4, 1), vec![vec![1], vec![2], vec![3], vec![4]]);
     }
 
     #[test]
     fn test_four_two() {
-        //   assert_eq!(combine2(4, 2), vec![vec![1, 2], vec![1, 3], vec![2, 3], vec![1, 4], vec![2, 4], vec![3, 4]]);
+        //   assert_eq!(combine3(4, 2), vec![vec![1, 2], vec![1, 3], vec![2, 3], vec![1, 4], vec![2, 4], vec![3, 4]]);
         assert_eq!(
-            combine2(4, 2),
+            combine3(4, 2),
             vec![
                 vec![1, 2],
                 vec![1, 3],
@@ -110,13 +133,13 @@ mod tests {
     #[test]
     fn test_four_three() {
         assert_eq!(
-            combine2(4, 3),
+            combine3(4, 3),
             vec![vec![1, 2, 3], vec![1, 2, 4], vec![1, 3, 4], vec![2, 3, 4]]
         );
     }
 
     #[test]
     fn test_four_four() {
-        assert_eq!(combine2(4, 4), vec![vec![1, 2, 3, 4]]);
+        assert_eq!(combine3(4, 4), vec![vec![1, 2, 3, 4]]);
     }
 }
