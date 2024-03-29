@@ -5,9 +5,6 @@ This is a repo for well-written leetcode solutions. Solutions to the problems ar
 For example, the url below maps to `problems/two_sum`
 > https://leetcode.com/problems/two-sum/
 
-After you added a new solution, clean the build cache so autocmd would pick up the new file
-> cargo clean
-
 To run all tests, do
 > cargo test problems
 
