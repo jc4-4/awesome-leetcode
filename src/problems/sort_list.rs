@@ -1,18 +1,5 @@
 // https://leetcode.com/problems/sort-list
-
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
+use crate::shared::*;
 
 pub fn sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     merge_sort(head)
@@ -76,22 +63,12 @@ fn merge(left: Option<Box<ListNode>>, right: Option<Box<ListNode>>) -> Option<Bo
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    fn create_list(values: &[i32]) -> Option<Box<ListNode>> {
-        if values.is_empty() {
-            return None;
-        }
-        let mut tail = None;
-        for &v in values.iter().rev() {
-            tail = Some(Box::new(ListNode { val: v, next: tail }));
-        }
-        tail
-    }
+    use crate::shared::*;
 
     fn check(input: &[i32]) {
         let mut sorted = input.to_vec();
         sorted.sort();
-        assert_eq!(sort_list(create_list(input)), create_list(&sorted));
+        assert_eq!(sort_list(new_list(input)), new_list(&sorted));
     }
 
     #[test]
