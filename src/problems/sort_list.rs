@@ -63,7 +63,6 @@ fn merge(left: Option<Box<ListNode>>, right: Option<Box<ListNode>>) -> Option<Bo
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::shared::*;
 
     fn check(input: &[i32]) {
         let mut sorted = input.to_vec();
