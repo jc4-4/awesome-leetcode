@@ -6,12 +6,8 @@ pub fn sort_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
 }
 
 fn merge_sort(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    if head.is_none() {
-        return None;
-    }
-
     match split(head.as_mut()) {
-        Some(node) => merge(merge_sort(head), merge_sort(Some(node))),
+        Some(tail) => merge(merge_sort(head), merge_sort(Some(tail))),
         None => head,
     }
 }
@@ -19,14 +15,10 @@ fn merge_sort(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
 // this signature allows us to take the Option in next
 // whereas &mut Option would not allow us to mutate the inside value
 fn split(head: Option<&mut Box<ListNode>>) -> Option<Box<ListNode>> {
-    if head.is_none() {
-        return None;
-    }
-
     // minus one since we always take the next node and not the current
     // this happens when head is a singleton node.
-    let mut mid = len(&head.as_deref()) / 2 - 1;
-    let mut current: &mut Box<ListNode> = head.unwrap();
+    let mut current = head?;
+    let mut mid = len(&Some(current)) / 2 - 1;
     while mid > 0 {
         current = current.next.as_mut().expect("next does not exist");
         mid -= 1;

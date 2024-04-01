@@ -51,14 +51,13 @@ mod tests {
         }
 
         let mid = values.len() / 2;
-        match values[mid] {
-            Some(value) => Some(Rc::new(RefCell::new(TreeNode {
+        values[mid].map(|value| {
+            Rc::new(RefCell::new(TreeNode {
                 val: value,
                 left: to_tree(&values[..mid]),
                 right: to_tree(&values[mid + 1..]),
-            }))),
-            None => None,
-        }
+            }))
+        })
     }
 
     #[test]
